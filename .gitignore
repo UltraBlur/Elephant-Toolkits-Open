@@ -173,9 +173,62 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
-# Cursor  
-#  Cursor is an AI-powered code editor.`.cursorignore` specifies files/directories to 
+# Cursor
+#  Cursor is an AI-powered code editor.`.cursorignore` specifies files/directories to
 #  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# Claude Code
+#  Claude Code is an AI-powered CLI tool. This folder contains conversation history,
+#  settings, and other local data that should not be committed to version control
+.claude/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# IDE - VSCode
+.vscode/
+*.code-workspace
+
+# IDE - JetBrains (PyCharm, IntelliJ, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Vim
+*.swp
+*.swo
+*~
+.*.swp
+.*.swo
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+~*
+
+# Project specific
+# Add any project-specific files or folders here
