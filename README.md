@@ -1,4 +1,4 @@
-# = Elephant Toolkits Open
+# 🐘 Elephant Toolkits Open
 
 A collection of professional VFX pipeline tools for video post-production workflows.
 
