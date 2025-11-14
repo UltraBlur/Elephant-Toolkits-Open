@@ -6,16 +6,31 @@ English | [简体中文](README_zh.md)
 
 ## Tools
 
-### Timecode Calculator
+### Timecode Toolbox
 
-A professional timecode calculator designed for VFX and post-production workflows, built with PyQt5 and powered by the `dftt-timecode` library.
+A professional timecode toolbox combining converter and calculator for VFX and post-production workflows, built with PyQt5 and powered by the `dftt-timecode` library.
 
-![Timecode Calculator](https://img.shields.io/badge/PyQt5-Powered-blue)
+![Timecode Toolbox](https://img.shields.io/badge/PyQt5-Powered-blue)
 ![Python](https://img.shields.io/badge/Python-3.12+-green)
 
 #### Features
 
+**Timecode Converter:**
+- **Multi-Format Conversion**: Convert between 7 different timecode formats
+  - **SMPTE** (HH:MM:SS:FF) - Industry standard
+  - **SRT** (HH:MM:SS,mmm) - Subtitle format
+  - **DLP** (HH:MM:SS:sss) - Digital cinema format
+  - **FFmpeg** (HH:MM:SS.xx) - FFmpeg format
+  - **FCPX** (fraction/s) - Final Cut Pro X format
+  - **Frame** (count) - Frame number
+  - **Time** (seconds) - Decimal seconds
+
+**Timecode Calculator:**
 - **Timecode Arithmetic**: Perform addition and subtraction operations on timecodes
+- **Calculation History**: Keeps track of your last 10 calculations
+- **Real-time Results**: Instant calculation with format conversion
+
+**Common Features:**
 - **Multiple Frame Rates**: Support for industry-standard frame rates
   - 23.976 fps (Film)
   - 24 fps (Cinema)
@@ -26,35 +41,17 @@ A professional timecode calculator designed for VFX and post-production workflow
   - 59.94 fps (NTSC High Frame Rate)
   - 60 fps (High Frame Rate)
 
-- **Multiple Timecode Formats**:
-  - **SMPTE** (HH:MM:SS:FF) - Industry standard
-  - **SRT** (HH:MM:SS,mmm) - Subtitle format
-  - **DLP** (HH:MM:SS:sss) - Digital cinema format
-  - **FFmpeg** (HH:MM:SS.xx) - FFmpeg format
-  - **FCPX** (fraction/s) - Final Cut Pro X format
-  - **Frame** (count) - Frame number
-  - **Time** (seconds) - Decimal seconds
-
 - **Auto-formatting Input**: Automatically formats timecode as you type
-- **Calculation History**: Keeps track of your last 10 calculations
 - **Dark Theme UI**: Professional dark interface matching VFX pipeline aesthetics
-- **Format Conversion**: Instantly convert timecodes between different formats
+- **Drop Frame Support**: Handle drop-frame timecode for 29.97 and 59.94 fps
+- **Strict Mode**: Optional strict mode for 24-hour timecode validation
 
 #### Usage
 
 ```bash
-# Run the Timecode Calculator
-python scripts_ui/TC_Calculator.py
+# Run the Timecode Toolbox
+python scripts_ui/TC_Toolbox.py
 ```
-
-#### Screenshots
-
-The calculator features:
-- Clean, intuitive interface with dark theme
-- Real-time input formatting
-- Visual operation selection (+/-)
-- Instant format switching with automatic conversion
-- Persistent calculation history
 
 #### Use Cases
 
@@ -63,6 +60,78 @@ The calculator features:
 - **Conform**: Convert timecodes between different formats
 - **Grading**: Calculate timeline positions across different frame rates
 - **Subtitling**: Work with SRT format timecodes
+- **Audio Post**: Convert timecodes for audio sync workflows
+
+---
+
+### WAV Timecode Batch Offset Tool
+
+A command-line tool for batch modifying BWF timecode (TimeReference) in WAV files with frame-accurate offsets. Designed for audio post-production workflows requiring synchronized timecode adjustments.
+
+![CLI Tool](https://img.shields.io/badge/CLI-Tool-orange)
+![Python](https://img.shields.io/badge/Python-3.8+-green)
+
+#### Features
+
+- **Batch Processing**: Process entire folders of WAV files automatically
+- **Frame Offset**: Offset timecode by specified number of frames (positive or negative)
+- **Auto Detection**: Automatically read sample rate and current timecode from files
+- **Multiple Frame Rates**: 23.976, 24, 25, 29.97, 30, 50, 59.94, 60 fps
+- **SMPTE Display**: Show timecode in standard HH:MM:SS:FF format
+- **Progress Reporting**: Real-time display of processing status and statistics
+- **BWF Metadata**: Direct manipulation of Broadcast Wave Format metadata
+- **Non-Destructive**: Only modifies metadata, audio data remains untouched
+
+#### Requirements
+
+- **bwfmetaedit**: Command-line tool for BWF metadata editing
+  ```bash
+  # macOS
+  brew install bwfmetaedit
+
+  # Linux
+  apt-get install bwfmetaedit
+  ```
+
+#### Usage
+
+1. Edit configuration in `AKLD/wav_tc_offset.py`:
+   ```python
+   INPUT_FOLDER = "/path/to/wav/files/"
+   OFFSET_FRAMES = -934  # Negative for backward, positive for forward
+   FRAME_RATE = 24
+   ```
+
+2. Run the script:
+   ```bash
+   python AKLD/wav_tc_offset.py
+   ```
+
+#### Example Output
+
+```
+============================================================
+WAV 时间码批量偏移工具
+============================================================
+找到 56 个WAV文件
+偏移参数: -934 帧 @ 24 fps
+------------------------------------------------------------
+
+处理: 171112_T41_1_2_3_4.WAV
+  当前时间码: 06:03:19:00
+  新时间码:   06:02:40:02
+  ✓ 成功
+
+============================================================
+完成! 成功处理 56/56 个文件
+```
+
+#### Use Cases
+
+- **Audio Sync**: Adjust timecode to match video edits
+- **Conform**: Offset audio timecode after video conform
+- **Multi-cam**: Synchronize timecode across multiple audio recordings
+- **Archive**: Correct timecode errors in archived recordings
 
 ## Installation
 
