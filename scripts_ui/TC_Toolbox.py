@@ -46,7 +46,7 @@ class TimecodeConverterWidget(QWidget):
         super().__init__(parent)
 
         # Default settings
-        self.current_fps = 24
+        self.current_fps = 25
         self.current_format = 'smpte'
         self.strict_mode = True
         self.drop_frame = False
@@ -217,7 +217,7 @@ class TimecodeConverterWidget(QWidget):
         self.fps_combo = QComboBox()
         self.fps_combo.setFixedSize(120, 25)
         self.fps_combo.addItems(["23.976", "23.98", "24", "25", "29.97", "30", "48", "50", "59.94", "60", "Custom"])
-        self.fps_combo.setCurrentText("24")
+        self.fps_combo.setCurrentText("25")
         self.fps_combo.setStyleSheet(self.common_styles['combobox_style'])
         self.fps_combo.currentTextChanged.connect(self.on_fps_changed)
         self._add_combobox_arrow(self.fps_combo)
@@ -540,7 +540,7 @@ class TimecodeConverterWidget(QWidget):
                 if self.input_field.text().strip():
                     self.convert_timecode()
             except ValueError:
-                self.current_fps = 24
+                self.current_fps = 25
 
     def on_custom_fps_changed(self, text):
         """Handle custom FPS input change"""
@@ -1019,7 +1019,7 @@ class TimecodeCalculatorWidget(QWidget):
         self.fps_combo = QComboBox()
         self.fps_combo.setFixedSize(120, 25)
         self.fps_combo.addItems(["23.976", "23.98", "24", "25", "29.97", "30", "48", "50", "59.94", "60", "Custom"])
-        self.fps_combo.setCurrentText("24")
+        self.fps_combo.setCurrentText("25")
         self.fps_combo.setStyleSheet(self.common_styles['combobox_style'])
         self.fps_combo.currentTextChanged.connect(self.on_fps_changed)
         self._add_combobox_arrow(self.fps_combo)
@@ -1363,7 +1363,7 @@ class TimecodeCalculatorWidget(QWidget):
                 self.update_strict_mode_availability()
                 self.update_drop_frame_availability()
             except ValueError:
-                self.current_fps = 24
+                self.current_fps = 25
 
     def on_custom_fps_changed(self, text):
         """Handle custom FPS input change"""

@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "dftt-timecode>=0.0.14",
+    "nuitka>=2.8.9",
     "numpy>=2.3.3",
     "pybmd>=2025.2.4",
     "pyqt5>=5.15.11",
